@@ -8,7 +8,7 @@ const MySSEComponent = () => {
 
     eventSource.onmessage = (event) => {
       // Handle incoming SSE updates here
-      console.log(event.data);
+      console.log(event);
     };
 
     eventSource.onerror = (err) => {
