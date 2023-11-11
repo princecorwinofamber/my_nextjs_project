@@ -4,7 +4,7 @@ import { authConfig } from './auth.config';
 import { z } from 'zod';
 import bcrypt from 'bcrypt';
  
-async function getUser(email) {
+/* async function getUser(email) {
   try {
     const user = {
         rows: [
@@ -43,4 +43,4 @@ export const { auth, signIn, signOut } = NextAuth({
       },
     }),
   ],
-});
+}); */

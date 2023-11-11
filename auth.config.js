@@ -1,4 +1,4 @@
-import { NextAuthConfig } from 'next-auth';
+/* import { NextAuthConfig } from 'next-auth';
  
 export const authConfig = {
   pages: {
@@ -16,4 +16,4 @@ export const authConfig = {
       return true;
     },
   },
-};
+}; */
