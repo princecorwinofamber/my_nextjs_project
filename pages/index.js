@@ -4,6 +4,7 @@ import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
 import { getSortedPostsData } from '../lib/posts';
 import Date from '../components/date';
+import { useState } from 'react';
 
 
 console.log("index.js run");
@@ -18,11 +19,14 @@ export async function getStaticProps() {
 }
 
 export default function Home({ allPostsData }) {
+  const [postText, setPostText] = useState('Type here!');
+
   return (
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
+      <Link href="/threads-overview">Threads</Link>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
@@ -47,6 +51,10 @@ export default function Home({ allPostsData }) {
           Read <Link href="/posts/first-post">this page!</Link>
         </h1>
       </section>
+      <input type="text" value={postText} onChange={(ev) => setPostText(ev.target.value)} />
+      <button onClick={() => fetch(`/api/post?thread_id=${1}&author_id=${3}&postText=${postText}`)}>
+        Post a cat photo!
+      </button>
     </Layout>
   );
 }

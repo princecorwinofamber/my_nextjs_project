@@ -5,43 +5,43 @@ import Layout from '../../components/layout';
 
 import path from 'path';
 import { getDB } from '../../lib/db';
-import { useEffect } from 'react';
-
-const pseudoDBDirectory = path.join(process.cwd(), 'pseudo_db');
+import { useEffect, useState } from 'react';
 
 export async function getServerSideProps(context) {
-  // Get file names under /pseudo_db
-  /* const fileNames = fs.readdirSync(pseudoDBDirectory);
-  console.log(fileNames);
-  return {
-    props: {
-      entryList: fileNames
-    },
-  }; */
-
   const db = getDB();
   let postList = await new Promise((resolve, reject) => {
-      db.all('SELECT * FROM posts', (err, rows) => {
+      db.all('SELECT * FROM posts WHERE thread_id=1', (err, rows) => {
         resolve(rows);
     })
   });
 
+  console.log("Generated initialEntryList");
+
   return {
     props: {
-      entryList: postList
+      initialEntryList: postList || []
     },
   };
 }
 
-export default function FirstPost({ entryList }) {
+export default function FirstPost({ initialEntryList }) {
+  const [entryList, setEntryList] = useState(initialEntryList);
+  console.log("entryList set to initialEntryList");
+  const [testState, setTestState] = useState(0);
+
   useEffect(() => {
-    console.log("loaded");
-    const eventSource = new EventSource('/api/sse');
+    const eventSource = new EventSource('/api/sse?thread_id=1');
     eventSource.onmessage = (event) => {
       console.log(event);
+      console.log(entryList);
+      setEntryList((currentEntryList) => [...currentEntryList, JSON.parse(event.data)]);
+      setTestState((currentValue) => currentValue + 1);
     };
-    console.log("unload");
+    return () => {
+      eventSource.close();
+    }
   }, []);
+
   return (
     <Layout>
       <Head>
@@ -55,10 +55,11 @@ export default function FirstPost({ entryList }) {
         }
       />
       <h1>First Post</h1>
+      <p>{testState}</p>
       <ul>
         {entryList.map((item) => (
           <li key={item.id}>
-            File: {item.text}
+            Cat: {item.text}
           </li>
         ))}
       </ul>

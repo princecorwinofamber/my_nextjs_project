@@ -1,6 +1,6 @@
-export const dynamic = 'force-dynamic';
+import { getDBEventEmitter } from "../../lib/db";
 
-console.log("SSE file run");
+export const dynamic = 'force-dynamic';
 
 export default (req, res) => {
   res.setHeader('Content-Type', 'text/event-stream');
@@ -8,29 +8,32 @@ export default (req, res) => {
   res.setHeader('Content-Encoding', 'none');
   res.setHeader('Connection', 'keep-alive');
 
-  // Send an initial message to the client
-  res.write('data: Welcome to SSE\n\n');
-
   // Simulate sending updates at intervals (you can replace this with your own logic)
-  const interval = setInterval(() => {
+  /* const interval = setInterval(() => {
     const message = `data: ${new Date().toLocaleTimeString()}\n\n`;
     res.write(message);
-    console.log("Sending", message);
-    console.log("res status:", res.writableEnded, res.writableFinished, res.destroyed);
-  }, 1000);
+  }, 1000); */
+
+  const eventName = `post_${req.query.thread_id}`;
+  console.log("subscribe to", eventName);
+
+  const newPostHandler = ({ id, thread_id, author_id, text }) => {
+    console.log("Sending to client,", id, thread_id, author_id, text);
+    res.write(`data: ${JSON.stringify({id, thread_id, author_id, text})}\n\n`);
+  };
+  getDBEventEmitter().on(eventName, newPostHandler);
 
   req.on('error', (e) => {
-      console.error("SSE error", e);
+    console.error("SSE error", e);
   })
 
   // Handle client disconnect
   const closeHandle = () => {
-    console.log("Closing SSE api by event handler");
-    clearInterval(interval);
+    // clearInterval(interval);
+    getDBEventEmitter().removeListener(eventName, newPostHandler);
     res.end();
   };
 
   res.on('close', closeHandle);
   res.on('abort', closeHandle);
-  
 };

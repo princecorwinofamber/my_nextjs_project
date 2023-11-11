@@ -4,11 +4,11 @@ import Link from 'next/link';
 const MySSEComponent = () => {
   useEffect(() => {
     console.log("TestSSe useEffect called");
-    const eventSource = new EventSource('/api/sse');
+    const eventSource = new EventSource('/api/sse?thread_id=cats');
 
     eventSource.onmessage = (event) => {
       // Handle incoming SSE updates here
-      console.log(event);
+      console.log(event.data);
     };
 
     eventSource.onerror = (err) => {
