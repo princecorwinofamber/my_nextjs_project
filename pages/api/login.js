@@ -13,11 +13,16 @@ export default withIronSessionApiRoute(
       })
     });
 
+    if (!user) {
+      res.status(404).send({ success: false, reason: "User not found" });
+      return;
+    }
+    
     const passwordHash = crypto.createHash('sha256').update(`${req.body.username}:${req.body.password}:${user.salt}`).digest('hex');
 
     if (passwordHash != user.password_hash) {
       console.log("For user", user.username, "expected password", user.password_hash, "got password", passwordHash);
-      res.status(404).send({ reason: "Invalid password" });
+      res.status(200).send({ success: false, reason: "Invalid password" });
       return;
     }
     // get user from database then:
@@ -25,7 +30,7 @@ export default withIronSessionApiRoute(
     req.session.user.admin = true;
 
     await req.session.save();
-    res.send({ ok: true });
+    res.send({ success: true });
   },
   {
     cookieName: process.env.IRON_SESSION_COOKIE_NAME,

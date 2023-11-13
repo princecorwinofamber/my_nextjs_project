@@ -4,12 +4,6 @@ import LoginLayout from "../components/LoginLayout";
 import Form from "../components/Form";
 import fetchJson, { FetchError } from "../lib/fetchJson";
 
-const crypto = require('crypto');
-const sha256h = crypto.createHash('sha256').update("Hello, world!").digest('hex');
-console.log(sha256h);
-
-const SALT = process.env.SALT;
-
 export default function Login() {
   // here we just check if user is already logged in and redirect to profile
   const { mutateUser } = useUser({

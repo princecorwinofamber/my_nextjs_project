@@ -7,7 +7,9 @@ export default function CreateThread() {
 
   const createButtonHandler = () => {
     // send thread name to API
-    fetch(`/api/create-thread?name=${threadParams.name}`);
+    fetch(`/api/create-thread?name=${threadParams.name}`, {
+      method: 'POST'
+    });
   }
 
   return (
