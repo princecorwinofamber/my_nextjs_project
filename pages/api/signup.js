@@ -5,8 +5,7 @@ export default async function handler(req, res) {
   console.log('Signup', req.body);
   if (req.body.username && req.body.password && req.body.display_name) {
     const signupResult = await signupUser(req.body.username, req.body.password, req.body.display_name);
-    console.log("signupResult", signupResult);
-    res.status(200).json({ text: 'Signup Sucessful!' });
+    res.status(200).json(signupResult);
   } else {
     res.status(400);
   }
