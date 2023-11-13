@@ -1,7 +1,7 @@
 import React from "react";
-import Layout from "components/Layout";
-import useUser from "lib/useUser";
-import useEvents from "lib/useEvents";
+import LoginLayout from "../components/LoginLayout";
+import useUser from "../lib/useUser";
+import useEvents from "../lib/useEvents";
 
 // Make sure to check https://nextjs.org/docs/basic-features/layouts for more info on how to use layouts
 export default function SgProfile() {
@@ -11,7 +11,7 @@ export default function SgProfile() {
   const { events } = useEvents(user);
 
   return (
-    <Layout>
+    <LoginLayout>
       <h1>Your GitHub profile</h1>
       <h2>
         This page uses{" "}
@@ -46,6 +46,6 @@ export default function SgProfile() {
           )}
         </p>
       )}
-    </Layout>
+    </LoginLayout>
   );
 }
