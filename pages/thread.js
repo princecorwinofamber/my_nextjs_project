@@ -21,7 +21,7 @@ export async function getServerSideProps(context) {
       console.log("rows", row);
       resolve(row.thread_name);
     })
-  }); 
+  });
 
   return {
     props: {
