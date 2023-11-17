@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { getDB } from '../lib/db';
 import { useEffect, useState } from 'react';
+// import useSWR from 'swr';
 
 export async function getServerSideProps(context) {
   const db = getDB();
@@ -19,6 +20,10 @@ export async function getServerSideProps(context) {
 }
 
 export default function ThreadsOverview({ entryList }) {
+  // useSWR works only in normal pages that are not used by _app.js
+  
+  // const { data: user, mutate: mutateUser } = useSWR('/api/user');
+  // console.log(user);
   return (
     <>
       <Head>

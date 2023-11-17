@@ -22,7 +22,7 @@ export default withIronSessionApiRoute(
 
     if (passwordHash != user.password_hash) {
       console.log("For user", user.username, "expected password", user.password_hash, "got password", passwordHash);
-      res.status(200).send({ success: false, reason: "Invalid password" });
+      res.status(400).send({ success: false, reason: "Invalid password" });
       return;
     }
     // get user from database then:

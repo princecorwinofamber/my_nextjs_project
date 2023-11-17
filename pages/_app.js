@@ -1,5 +1,6 @@
 import { SWRConfig } from "swr";
 import fetchJson from "../lib/fetchJson";
+import ForumLayout from "../components/ForumLayout";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -11,7 +12,9 @@ function MyApp({ Component, pageProps }) {
         },
       }}
     >
-      <Component {...pageProps} />
+      <ForumLayout>
+        <Component {...pageProps} />
+      </ForumLayout>
     </SWRConfig>
   );
 }

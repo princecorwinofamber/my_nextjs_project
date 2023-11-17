@@ -1,0 +1,32 @@
+.DropdownMenu {
+  /* Styles for the dropdown menu */
+  position: absolute;
+  top: 100%; /* Position the menu just below the button */
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  border-top: none; /* Remove the top border to overlap with the button */
+  z-index: 1001; /* Ensure the menu appears above the header */
+  color: yellow;
+}
+
+.DropdownMenu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.DropdownMenu li {
+  padding: 8px 16px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.DropdownMenu li:last-child {
+  border-bottom: none; /* Remove the border for the last item */
+}
+
+.Overflowing {
+  overflow: visible;
+}

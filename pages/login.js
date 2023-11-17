@@ -3,6 +3,7 @@ import useUser from "../lib/useUser";
 import LoginLayout from "../components/LoginLayout";
 import Form from "../components/Form";
 import fetchJson, { FetchError } from "../lib/fetchJson";
+import { useRouter } from "next/router";
 
 export default function Login() {
   // here we just check if user is already logged in and redirect to profile
@@ -12,6 +13,7 @@ export default function Login() {
   });
 
   const [errorMsg, setErrorMsg] = useState("");
+  const router = useRouter();
 
   return (
     <LoginLayout>
@@ -36,6 +38,7 @@ export default function Login() {
                 }),
                 false,
               );
+              router.reload();
             } catch (error) {
               console.log("eeror", error.data);
               if (error instanceof FetchError) {

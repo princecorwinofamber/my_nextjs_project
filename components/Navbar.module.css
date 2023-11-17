@@ -1,0 +1,25 @@
+.Navbar {
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333; /* Add your preferred background color */
+  color: #fff; /* Add your preferred text color */
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow for a subtle effect */
+  z-index: 1000; /* Optional: Set a higher z-index to ensure the header appears above other elements */
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.firstInput {
+  grid-column: 3;
+}
+
+.secondInput {
+  grid-column: 5;
+  margin-right: 20px;
+}
+
+.leanRight {
+  text-align: right;
+}
