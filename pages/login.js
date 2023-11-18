@@ -20,12 +20,13 @@ export default function Login() {
       <div className="login">
         <Form
           errorMessage={errorMsg}
-          onSubmit={async function handleSubmit(event) {
+          onSubmit={async function handleSubmit(username, password) {
             event.preventDefault();
+            console.log("event", event);
 
             const body = {
-              username: event.currentTarget.username.value,
-              password: event.currentTarget.password.value
+              username: username,
+              password: password,
             };
 
             try {

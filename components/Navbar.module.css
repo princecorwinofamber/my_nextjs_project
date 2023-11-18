@@ -13,6 +13,7 @@
 
 .firstInput {
   grid-column: 3;
+  margin: auto;
 }
 
 .secondInput {

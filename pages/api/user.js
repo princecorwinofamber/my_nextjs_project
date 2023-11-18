@@ -4,7 +4,8 @@ import { withIronSessionApiRoute } from "iron-session/next";
 
 export default withIronSessionApiRoute(
   function userRoute(req, res) {
-    res.send({ user: req.session.user });
+    const { password_hash, salt, is_auth_token_deactivated, ...nonSecretUserData } = req.session.user || {};
+    res.send({ user: nonSecretUserData });
   },
   {
     cookieName: process.env.IRON_SESSION_COOKIE_NAME,

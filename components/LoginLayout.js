@@ -5,7 +5,7 @@ export default function LoginLayout({ children }) {
   return (
     <>
       <Head>
-        <title>With Iron Session</title>
+        <title>Login page</title>
       </Head>
       <style jsx global>{`
         *,
@@ -29,7 +29,7 @@ export default function LoginLayout({ children }) {
           padding-right: 1rem;
         }
       `}</style>
-      <Header />
+      
 
       <main>
         <div className="container">{children}</div>

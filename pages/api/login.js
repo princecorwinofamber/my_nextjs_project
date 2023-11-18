@@ -26,6 +26,7 @@ export default withIronSessionApiRoute(
       return;
     }
     // get user from database then:
+    // let { password_hash, salt, is_auth_token_deactivated, ...nonSecretUserData } = user;
     req.session.user = user;
     req.session.user.admin = true;
 

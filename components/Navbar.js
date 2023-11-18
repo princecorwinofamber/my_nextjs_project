@@ -1,8 +1,11 @@
 import StringInput from "./StringInput";
 import styles from "./Navbar.module.css";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function Navbar() {
+  const router = useRouter();
   // better add a custom hook for this
   const [user, setUser] = useState(null);
   useEffect(() => {
@@ -21,7 +24,17 @@ export default function Navbar() {
       </div>
       <div className={styles.secondInput}>
         <div style={{float: "right"}}>
-          {user?.user ? <><p>Logged in as {user.user.username}</p><p><button>Log out</button></p></> : <button>Log in</button>}
+          {user?.user?.username ?
+          <>
+            <p>Logged in as {user.user.username}</p>
+            <p>
+              <Link href="/admin">My Account</Link>
+            </p>
+            <p>
+              <button onClick={() => fetch('/api/logout', { method: 'POST' }).then(() => router.reload())}>Log out</button>
+            </p>
+          </> :
+          <button onClick={() => router.push('/login')}>Log in</button>}
         </div>
       </div>
     </header>

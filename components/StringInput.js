@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import styles from './StringInput.module.css';
 
-export default function StringInput({ placeholder, validatorRegex = /[\s\S]*/ }) {
+export default function StringInput({ value, setValue, placeholder, name, required=false, validatorRegex = /[\s\S]*/ }) {
   const [hover, setHover] = useState(false);
-  const [string, setString] = useState("");
 
   return (
     <input
@@ -13,11 +12,13 @@ export default function StringInput({ placeholder, validatorRegex = /[\s\S]*/ })
       onPointerLeave={() => setHover(false)}
       onChange={(ev) => {
         if (validatorRegex.test(ev.target.value)) {
-          setString(ev.target.value);
+          setValue(ev.target.value);
         }
       }}
       placeholder={placeholder}
-      value={string}
+      required={required}
+      value={value}
+      name={name}
     />
   );
 }
