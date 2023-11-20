@@ -4,6 +4,7 @@ import LoginLayout from "../components/LoginLayout";
 import Form from "../components/Form";
 import fetchJson, { FetchError } from "../lib/fetchJson";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function Login() {
   // here we just check if user is already logged in and redirect to profile
@@ -50,6 +51,9 @@ export default function Login() {
             }
           }}
         />
+      </div>
+      <div style={{ textAlign: "center" }}>
+        <Link href="/signup">Sign up</Link>
       </div>
       <style jsx>{`
         .login {

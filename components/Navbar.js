@@ -1,4 +1,5 @@
 import StringInput from "./StringInput";
+import Image from 'next/image';
 import styles from "./Navbar.module.css";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
@@ -20,7 +21,11 @@ export default function Navbar() {
   return (
     <header className={styles.Navbar}>
       <div className={styles.firstInput}>
-        <StringInput placeholder={"navbar input"}></StringInput>
+        <Image
+          src="/images/forest-small.png"
+          width={286}
+          height={55}
+        />
       </div>
       <div className={styles.secondInput}>
         <div style={{float: "right"}}>

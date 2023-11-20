@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import styles from './StringInput.module.css';
 
-export default function StringInput({ value, setValue, placeholder, name, required=false, validatorRegex = /[\s\S]*/ }) {
+export default function StringInput({ value, setValue, placeholder, name, required=false, validatorRegex = /[\s\S]*/, className = "" }) {
   const [hover, setHover] = useState(false);
 
   return (
     <input
       type="text"
-      className={`${styles.StringInput} ${hover ? styles.hover : ""}`}
+      className={`${styles.StringInput} ${hover ? styles.hover : ""} ${className}`}
       onPointerEnter={() => setHover(true)}
       onPointerLeave={() => setHover(false)}
       onChange={(ev) => {
