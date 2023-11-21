@@ -24,9 +24,12 @@ export default function Signup() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      console.log(result);
-      if (!result.success) {
-        setErrorMessage(result.reason);
+      const parsedResult = await result.json();
+      console.log(parsedResult);
+      if (!parsedResult.success) {
+        setErrorMessage(parsedResult.reason);
+      } else {
+        setErrorMessage("");
       }
     } catch (err) {
       setErrorMessage("Error signing up");

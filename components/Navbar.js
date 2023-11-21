@@ -25,6 +25,7 @@ export default function Navbar() {
           src="/images/forest-small.png"
           width={286}
           height={55}
+          alt="Forum logo"
         />
       </div>
       <div className={styles.secondInput}>
