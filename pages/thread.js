@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Head from 'next/head';
+import ProfilePicture from '../components/ProfilePicture';
 import { getDB } from '../lib/db';
 import { useEffect, useState } from 'react';
 import { URL } from 'node:url';
@@ -58,12 +59,13 @@ export default function FirstPost({ initialEntryList, threadName, threadId }) {
       <ul>
         {entryList.map((item) => (
           <li key={item.id}>
-            Message: {item.text}
+            <ProfilePicture userId={item.author_id} size={64} />
+            <p>Message: {item.text}</p>
           </li>
         ))}
       </ul>
       <input type="text" value={postText} onChange={(ev) => setPostText(ev.target.value)} />
-      <button onClick={() => fetch(`/api/post?thread_id=${threadId}&author_id=${3}&postText=${postText}`)}>
+      <button onClick={() => fetch(`/api/post?thread_id=${threadId}&author_id=${3}&postText=${postText}`, { method: 'POST' })}>
         Send
       </button>
     </>

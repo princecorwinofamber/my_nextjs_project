@@ -34,7 +34,7 @@ export default function Navbar() {
           <>
             <p>Logged in as {user.user.username}</p>
             <p>
-              <Link href="/admin">My Account</Link>
+              <Link href="/profile">My Account</Link>
             </p>
             <p>
               <button onClick={() => fetch('/api/logout', { method: 'POST' }).then(() => router.reload())}>Log out</button>

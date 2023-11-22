@@ -19,19 +19,27 @@ export default withIronSessionApiRoute(
         }
 
         // Get the file from the request body
-        var form = formidable({ maxFiles: 1 });
+        var form = formidable({
+            maxFiles: 1,
+            uploadDir: path.join(process.cwd(), 'avatars'),
+        });
         console.log("formiddable started");
-        form.parse(req, function (err, fields, files) {
-            console.log('FILES  ', files);
-            /* fs.rename(files.avatar.path, path.join(process.cwd(), 'public', 'images', 'avatars', String(user_id), '.png'), function (err) {
-                if (err) {
-                    res.status(400).json({ message: `Error uploading file: ${err}` });
-                    res.end();
-                } else {
-                    res.status(200).json({ message: 'Avatar uploaded successfully' });
-                    res.end();
-                }
-            }); */
+        let files;
+        let fields;
+        try {
+            [fields, files] = await form.parse(req);
+        } catch (error) {
+            console.log(error);
+        }
+        console.log('FILES  ', files, fields);
+        fs.rename(files.avatar[0].filepath, path.join(process.cwd(), 'avatars', `${String(user_id)}.png`), function (err) {
+            if (err) {
+                res.status(400).json({ message: `Error uploading file: ${err}` });
+                res.end();
+            } else {
+                res.status(200).json({ message: 'Avatar uploaded successfully' });
+                res.end();
+            }
         });
     },
     {
@@ -43,3 +51,9 @@ export default withIronSessionApiRoute(
         }
     }
 );
+
+export const config = {
+    api: {
+        bodyParser: false,
+    },
+};
