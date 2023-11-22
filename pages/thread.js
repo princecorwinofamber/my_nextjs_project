@@ -65,7 +65,11 @@ export default function FirstPost({ initialEntryList, threadName, threadId }) {
         ))}
       </ul>
       <input type="text" value={postText} onChange={(ev) => setPostText(ev.target.value)} />
-      <button onClick={() => fetch(`/api/post?thread_id=${threadId}&author_id=${3}&postText=${postText}`, { method: 'POST' })}>
+      <button onClick={() => fetch(`/api/post?thread_id=${threadId}`, {
+        method: 'POST',
+        headers: { "Content-Type": "text/plain" },
+        body: postText
+      })}>
         Send
       </button>
     </>

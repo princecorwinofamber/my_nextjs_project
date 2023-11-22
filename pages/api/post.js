@@ -14,8 +14,8 @@ export default withIronSessionApiRoute(
     }
     const db = getDB();
     console.log('Post', req.query);
-    if (req.query.postText && req.query.thread_id) {
-      postToThread(req.query.thread_id, user_id, req.query.postText);
+    if (req.query.thread_id) {
+      postToThread(req.query.thread_id, user_id, req.body);
       res.status(200).json({ text: 'Post Sucessful!' });
     } else {
       res.status(400);
