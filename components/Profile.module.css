@@ -1,0 +1,48 @@
+.root {
+  position: relative;
+  width: 120px;
+  height: 160px;
+  align-items: flex-start;
+  background-color: #ad1c1c;
+  overflow: hidden;
+}
+.avatar {
+  position: absolute;
+  left: 20px;
+  top: 16px;
+  width: 80px;
+  height: 80px;
+  overflow: visible;
+}
+.icon {
+  width: 100%;
+  height: 100%;
+}
+.name {
+  color: #fff;
+  font-size: 12px;
+  font-family: Montserrat, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  left: 0;
+  top: 105px;
+  width: 120px;
+  height: min-content;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+}
+.memberSince1262021 {
+  color: #fff;
+  font-size: 12px;
+  font-family: Montserrat, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  left: 0;
+  top: 125px;
+  width: 120px;
+  height: 15px;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+}

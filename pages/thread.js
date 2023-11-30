@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import Head from 'next/head';
 import ProfilePicture from '../components/ProfilePicture';
+import { Profile } from '../components/Profile';
 import { getDB } from '../lib/db';
 import { useEffect, useState } from 'react';
 import { URL } from 'node:url';
+import classes from './thread.module.css';
 
 export async function getServerSideProps(context) {
   console.log("context", context.req.url);
@@ -59,8 +61,14 @@ export default function FirstPost({ initialEntryList, threadName, threadId }) {
       <ul>
         {entryList.map((item) => (
           <li key={item.id}>
-            <ProfilePicture userId={item.author_id} size={64} />
-            <p>Message: {item.text}</p>
+            <div className={classes.flexContainer}>
+              <div className={classes.flexChild}>
+                <Profile />
+              </div>
+              <div className={classes.flexChild}>
+                <p style={{ display: "inline-block" }}>Message: {item.text}</p>
+              </div>
+            </div>
           </li>
         ))}
       </ul>
