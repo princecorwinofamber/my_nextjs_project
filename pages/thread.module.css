@@ -3,16 +3,15 @@
 }
 
 .flexChild {
-    border: 2px solid yellow;
+    border: 2px solid black;
 }  
 
 .flexChild:nth-of-type(1) {
     margin-right: 20px;
-    flex: 1;
-    flex-basis: 160px;
+    flex: 0;
 }
 
 .flexChild:nth-of-type(2) {
     margin-right: 20px;
-    flex: 4;
+    flex: 1;
 }
