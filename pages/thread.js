@@ -63,7 +63,7 @@ export default function FirstPost({ initialEntryList, threadName, threadId }) {
           <li key={item.id}>
             <div className={classes.flexContainer}>
               <div className={classes.flexChild}>
-                <Profile />
+                <Profile userId={item.author_id} />
               </div>
               <div className={classes.flexChild}>
                 <p style={{ display: "inline-block" }}>Message: {item.text}</p>

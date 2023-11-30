@@ -3,7 +3,7 @@
   width: 120px;
   height: 160px;
   align-items: flex-start;
-  background-color: #ad1c1c;
+  background-color: gray;
   overflow: hidden;
 }
 .avatar {
