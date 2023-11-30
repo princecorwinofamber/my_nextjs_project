@@ -66,13 +66,13 @@ export default function FirstPost({ initialEntryList, threadName, threadId }) {
                 <Profile userId={item.author_id} />
               </div>
               <div className={classes.flexChild}>
-                <p style={{ display: "inline-block" }}>Message: {item.text}</p>
+                <pre style={{ padding: 10, fontSize: 16 }}>{item.text}</pre>
               </div>
             </div>
           </li>
         ))}
       </ul>
-      <input type="text" value={postText} onChange={(ev) => setPostText(ev.target.value)} />
+      <textarea type="text" value={postText} onChange={(ev) => setPostText(ev.target.value)} />
       <button onClick={() => fetch(`/api/post?thread_id=${threadId}`, {
         method: 'POST',
         headers: { "Content-Type": "text/plain" },
