@@ -5,6 +5,7 @@ import { withIronSessionApiRoute } from "iron-session/next";
 export default withIronSessionApiRoute(
   function userRoute(req, res) {
     const { password_hash, salt, is_auth_token_deactivated, ...nonSecretUserData } = req.session.user || {};
+    console.log("user api called for", nonSecretUserData?.username || "no user");
     res.send({ user: nonSecretUserData });
   },
   {

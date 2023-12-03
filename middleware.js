@@ -39,5 +39,5 @@ export const middleware = async (req) => {
 };
 
 export const config = {
-  matcher: "/admin",
+  matcher: ["/admin", "/profile"],
 };

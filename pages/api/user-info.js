@@ -8,5 +8,6 @@ export default async function handle(req, res) {
     })
   });
   const { password_hash, salt, is_auth_token_deactivated, ...nonSecretUserData } = user || {};
+  console.log("user api called for", nonSecretUserData?.username || "no user");
   res.send({ user: nonSecretUserData });
 }

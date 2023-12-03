@@ -1,26 +1,16 @@
 import StringInput from "../components/StringInput";
+import ProfilePicture from '../components/ProfilePicture';
+import { Profile } from "../components/Profile";
 import { useState } from "react";
+import { useUserdata } from "../lib/useUserdata";
 
-export default function Profile() {
-  /* function onSubmit(ev) {
-    ev.preventDefault();
-    console.log(ev.currentTarget);
-    const formData = new FormData(ev.target);
-    fetch('/api/edit-profile-avatar', {
-      method: 'POST',
-      headers: { "Content-Type": "multipart/form-data" },
-      body: formData,
-    });
-  } */
+export default function ProfilePage() {
+  // ToDo: add a nice layout, display the current display name, register date, etc. (and the avatar of course)
+  // and add the ability to edit the display name and the password
 
-  /* return (
-    <>
-      <form method="POST" action="/api/edit-profile-avatar" enctype="multipart/form-data">
-        <input type="file" name="avatar" accept="image/png" />
-        <button type="submit">Upload</button>
-      </form>
-    </>
-  ); */
+  console.log("redraw started");
+
+  const user = useUserdata({ caller: "ProfilePage" });
 
   const [avatarFile, setAvatarFile] = useState(null);
 
@@ -40,8 +30,14 @@ export default function Profile() {
     });
   }
 
+  console.log("redraw finishing");
+
   return (
     <>
+      <div>
+        <h1>You are logged in as {user?.user ? user.user.username : "error" }</h1>
+        {console.log("user requested") == null && user?.user && true ? <Profile userId={user.user.id} /> : null}
+      </div>
       <form method="POST" action="/api/edit-profile-avatar" enctype="multipart/form-data">
         <input type="file" name="avatar" accept="image/png" onChange={onAvatarInputChange} />
         <p>{avatarFile?.name}</p>

@@ -83,3 +83,5 @@ export default function FirstPost({ initialEntryList, threadName, threadId }) {
     </>
   );
 }
+
+// Todo: make the post form appear only when the user is logged in

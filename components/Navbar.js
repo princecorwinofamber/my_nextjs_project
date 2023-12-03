@@ -4,11 +4,13 @@ import styles from "./Navbar.module.css";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useUserdata } from "../lib/useUserdata";
 
 export default function Navbar() {
   const router = useRouter();
-  // better add a custom hook for this
-  const [user, setUser] = useState(null);
+  // ToDo: better add a custom hook for this
+  
+  /* const [user, setUser] = useState(null);
   useEffect(() => {
     console.log("useEffect called");
     async function fetchUser() {
@@ -16,7 +18,8 @@ export default function Navbar() {
       setUser(fetchedUser);
     }
     fetchUser();
-  }, []);
+  }, []); */
+  const user = useUserdata({ caller: "Navbar" });
 
   return (
     <header className={styles.Navbar}>
