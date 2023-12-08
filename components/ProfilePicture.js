@@ -1,6 +1,6 @@
 import { set } from 'date-fns';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import utilStyles from '../styles/utils.module.css';
 
 function avatarLoader({ src, width, quality }) {
@@ -9,6 +9,10 @@ function avatarLoader({ src, width, quality }) {
 
 export default function ProfilePicture({ userId, size }) {
   const [available, setAvailable] = useState(true);
+
+  useEffect(() => {
+    setAvailable(true);
+  }, [userId]);
 
   return (
     <>

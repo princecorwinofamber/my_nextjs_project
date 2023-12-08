@@ -40,6 +40,7 @@ export default function ProfilePage() {
   }
 
   console.log("redraw finishing");
+  console.log("profile user", user?.user?.id);
 
   return (
     <>
@@ -47,7 +48,18 @@ export default function ProfilePage() {
         <h1>You are logged in as {user?.user ? user.user.username : "error" }</h1>
         {console.log("user requested") == null && user?.user && true ? <Profile userId={user.user.id} /> : null}
       </div>
-      <Image id="pic" src={avatarFromReader ? avatarFromReader : "/images/forest-small.png"} width="160" height="160" className={utilStyles.borderCircle} />
+      {
+        avatarFromReader ? 
+        <Image
+          src={avatarFromReader}
+          alt="Profile Picture"
+          width={160}
+          height={160}
+          className={utilStyles.borderCircle}
+        /> :
+        <ProfilePicture userId={user?.user ? user.user.id : "error"} size={160} />
+      }
+      
       <form method="POST" action="/api/edit-profile-avatar" enctype="multipart/form-data">
         <input type="file" name="avatar" accept="image/png" onChange={onAvatarInputChange} />
         <p>{avatarFile?.name}</p>
