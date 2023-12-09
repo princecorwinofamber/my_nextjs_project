@@ -43,7 +43,7 @@ export default function ProfilePage() {
   }
 
   async function onDisplayNameInputChange(value) {
-    setDisplayName(value);
+    // setDisplayName(value);
     const success = await fetch('/api/edit-display-name', {
       method: 'POST',
       headers: { "Content-Type": "text/plain" },
