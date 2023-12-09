@@ -39,7 +39,7 @@ export async function getServerSideProps(context) {
 export default function FirstPost({ initialEntryList, threadName, threadId }) {
   const [entryList, setEntryList] = useState(initialEntryList);
   const [postText, setPostText] = useState('Type here!');
-  const [user, _] = useUserdata();
+  const user = useUserdata();
 
   useEffect(() => {
     const eventSource = new EventSource(`/api/sse?thread_id=${threadId}`);

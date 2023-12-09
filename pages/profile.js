@@ -10,7 +10,7 @@ export default function ProfilePage() {
   // ToDo: add a nice layout, display the current display name, register date, etc. (and the avatar of course)
   // and add the ability to edit the display name and the password
 
-  const [user, updateUser] = useUserdata();
+  const user = useUserdata();
 
   const [avatar, setAvatar] = useState(null);
   const [displayName, setDisplayName] = useState("");
@@ -43,16 +43,12 @@ export default function ProfilePage() {
   }
 
   async function onDisplayNameInputChange(value) {
-    // setDisplayName(value);
+    setDisplayName(value);
     const success = await fetch('/api/edit-display-name', {
       method: 'POST',
       headers: { "Content-Type": "text/plain" },
       body: value,
     });
-    console.log("user", user);
-    if (success.status == 200) {
-      updateUser();
-    }
   }
 
   return (
