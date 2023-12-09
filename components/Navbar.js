@@ -19,7 +19,7 @@ export default function Navbar() {
     }
     fetchUser();
   }, []); */
-  const user = useUserdata({ caller: "Navbar" });
+  const [user, _] = useUserdata();
 
   return (
     <header className={styles.Navbar}>

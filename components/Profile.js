@@ -29,8 +29,8 @@ export function Profile({ userId }) {
       <div className={classes.avatar}>
         <ProfilePicture userId={userId} size={80} />
       </div>
-      <div className={classes.name}>{user.username}</div>
-      <div className={classes.memberSince1262021}>membeer since {date.date}.{date.month}.{date.year}</div>
+      <div className={classes.name}>{user.display_name}</div>
+      <div className={classes.memberSince}>member since {date.date}.{date.month}.{date.year}</div>
     </div>
   );
 };

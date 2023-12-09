@@ -6,6 +6,7 @@ import { getDB } from '../lib/db';
 import { useEffect, useState } from 'react';
 import { URL } from 'node:url';
 import classes from './thread.module.css';
+import { useUserdata } from '../lib/useUserdata';
 
 export async function getServerSideProps(context) {
   console.log("context", context.req.url);
@@ -38,6 +39,7 @@ export async function getServerSideProps(context) {
 export default function FirstPost({ initialEntryList, threadName, threadId }) {
   const [entryList, setEntryList] = useState(initialEntryList);
   const [postText, setPostText] = useState('Type here!');
+  const [user, _] = useUserdata();
 
   useEffect(() => {
     const eventSource = new EventSource(`/api/sse?thread_id=${threadId}`);
@@ -48,6 +50,8 @@ export default function FirstPost({ initialEntryList, threadName, threadId }) {
       eventSource.close();
     }
   }, []);
+
+  console.log("thread user", user);
 
   return (
     <>
@@ -72,14 +76,16 @@ export default function FirstPost({ initialEntryList, threadName, threadId }) {
           </li>
         ))}
       </ul>
-      <textarea type="text" value={postText} onChange={(ev) => setPostText(ev.target.value)} />
-      <button onClick={() => fetch(`/api/post?thread_id=${threadId}`, {
-        method: 'POST',
-        headers: { "Content-Type": "text/plain" },
-        body: postText
-      })}>
-        Send
-      </button>
+      {user?.user?.id ? <div>
+        <textarea type="text" value={postText} onChange={(ev) => setPostText(ev.target.value)} />
+        <button onClick={() => fetch(`/api/post?thread_id=${threadId}`, {
+          method: 'POST',
+          headers: { "Content-Type": "text/plain" },
+          body: postText
+        })}>
+          Send
+        </button>
+      </div> : <div></div>}
     </>
   );
 }
