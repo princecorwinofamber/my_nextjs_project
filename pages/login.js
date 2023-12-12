@@ -44,7 +44,8 @@ export default function Login() {
                 }),
                 false,
               );
-              router.reload();
+              router.push("/threads-overview");
+              // router.reload();
             } catch (error) {
               console.log("eeror", error.data);
               if (error instanceof FetchError) {
