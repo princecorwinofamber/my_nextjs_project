@@ -88,6 +88,9 @@ export default function FirstPost({ initialEntryList, threadName, threadId }) {
         </div>
       </div> : <div></div>}
       <style jsx>{`
+        ul {
+          list-style: none;
+        }
         textarea {
           width: 100%;
           height: 100px;
