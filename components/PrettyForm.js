@@ -1,10 +1,11 @@
 import styles from './PrettyForm.module.css';
 
 export function PrettyForm({ children, onSubmit }) {
+  const childArray = Array.isArray(children) ? children : [children];
   return (
     <>
       <form className={styles.PrettyForm} onSubmit={onSubmit}>
-        {children.map(child => <PrettyFormElement>{child}</PrettyFormElement>)}
+        {childArray.map((child, index) => <PrettyFormElement key={index}>{child}</PrettyFormElement>)}
       </form>
       <style jsx>{`
         .prettyForm {
@@ -15,8 +16,8 @@ export function PrettyForm({ children, onSubmit }) {
           height: 100%;
         }
         .error {
-            color: red;
-          }
+          color: red;
+        }
       `}</style>
     </>
   );
@@ -32,6 +33,7 @@ export function PrettyFormElement({ children }) {
         .prettyFormElement {
           display: flex;
           justify-content: center;
+          margin-top: 10px;
         }
       `}</style>
     </>
