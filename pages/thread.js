@@ -70,7 +70,7 @@ export default function FirstPost({ initialEntryList, threadName, threadId }) {
                 <Profile userId={item.author_id} />
               </div>
               <div className={classes.flexChild}>
-                <pre style={{ padding: 10, fontSize: 16 }}>{item.text}</pre>
+                <pre style={{ padding: 10, fontSize: 16, whiteSpace: "pre-wrap", wordWrap: "break-word" }}>{item.text}</pre>
               </div>
             </div>
           </li>
