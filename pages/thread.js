@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { URL } from 'node:url';
 import classes from './thread.module.css';
 import { useUserdata } from '../lib/useUserdata';
+import RoundedButton from '../components/RoundedButton';
 
 export async function getServerSideProps(context) {
   console.log("context", context.req.url);
@@ -77,17 +78,24 @@ export default function FirstPost({ initialEntryList, threadName, threadId }) {
         ))}
       </ul>
       {user?.user?.id ? <div>
-        <textarea type="text" value={postText} onChange={(ev) => setPostText(ev.target.value)} />
-        <button onClick={() => fetch(`/api/post?thread_id=${threadId}`, {
-          method: 'POST',
-          headers: { "Content-Type": "text/plain" },
-          body: postText
-        })}>
-          Send
-        </button>
+        <textarea type="text" value={postText} onChange={(ev) => setPostText(ev.target.value)}/>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 8 }}>
+          <RoundedButton onClick={() => fetch(`/api/post?thread_id=${threadId}`, {
+            method: 'POST',
+            headers: { "Content-Type": "text/plain" },
+            body: postText
+          })}>Send</RoundedButton>
+        </div>
       </div> : <div></div>}
+      <style jsx>{`
+        textarea {
+          width: 100%;
+          height: 100px;
+          font-size: 16px;
+          padding: 10px;
+          box-sizing: border-box;
+        }
+      `}</style>
     </>
   );
 }
-
-// Todo: make the post form appear only when the user is logged in
