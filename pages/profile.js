@@ -54,6 +54,19 @@ export default function ProfilePage() {
     });
   }
 
+  async function onPasswordSubmit(ev) {
+    ev.preventDefault();
+    const success = await fetch('/api/change-password', {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        oldPassword: currentPassword,
+        newPassword: newPassword,
+        repeatPassword: newPasswordConfirm,
+      })
+    });
+  }
+
   return (
     <>
       <div className="profile">
@@ -75,7 +88,7 @@ export default function ProfilePage() {
         <form onSubmit={(ev) => ev.preventDefault()} style={formStyle}>
           <p style={{display: 'flex', justifyContent: 'center'}}>Displayed Name</p>
           <div style={formElementStyle}>
-            <StringInput placeholder="Display Name" value={displayName} setValue={onDisplayNameInputChange}/>
+            <StringInput placeholder="Display Name" value={displayName} setValue={onDisplayNameInputChange} validatorRegex={/^[\w ]*$/} />
           </div>
         </form>
         <form onSubmit={(ev) => ev.preventDefault()} style={formStyle}>
@@ -90,7 +103,7 @@ export default function ProfilePage() {
             <StringInput placeholder="Repeat Password" value={newPasswordConfirm} setValue={setNewPasswordConfirm}/>
           </div>
           <div style={{display: 'flex', justifyContent: 'center', ...formElementStyle}}>
-            <button type="submit">Change Password</button>
+            <button type="submit" onClick={onPasswordSubmit}>Change Password</button>
           </div>
         </form>
       </div>
