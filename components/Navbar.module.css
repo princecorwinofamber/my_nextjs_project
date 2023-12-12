@@ -6,6 +6,7 @@
   color: #fff; /* Add your preferred text color */
   padding: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow for a subtle effect */
+  box-sizing: border-box;
   z-index: 1000; /* Optional: Set a higher z-index to ensure the header appears above other elements */
   display: grid;
   grid-template-columns: repeat(5, 1fr);

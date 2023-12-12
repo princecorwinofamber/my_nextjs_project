@@ -4,7 +4,7 @@ export default function ForumLayout({ children }) {
   return (
     <>
       <Navbar />
-      <main>{children}</main>
+      <main style={{ margin: 8 }}>{children}</main>
     </>
   );
 }

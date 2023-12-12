@@ -15,6 +15,11 @@ function MyApp({ Component, pageProps }) {
       <ForumLayout>
         <Component {...pageProps} />
       </ForumLayout>
+      <style jsx global>{`
+        body {
+          margin: 0;
+        }
+      `}</style>
     </SWRConfig>
   );
 }
