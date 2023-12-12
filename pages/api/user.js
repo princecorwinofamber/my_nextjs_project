@@ -7,7 +7,7 @@ export default withIronSessionApiRoute(
   async function userRoute(req, res) {
     const db = getDB();
     const user = await new Promise((resolve, reject) => {
-      db.get('SELECT * FROM users WHERE id=?', [req.session.user.id], (err, row) => {
+      db.get('SELECT * FROM users WHERE id=?', [req?.session?.user?.id || 0], (err, row) => {
         resolve(row);
       })
     });
