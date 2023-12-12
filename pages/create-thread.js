@@ -34,15 +34,9 @@ export default function CreateThread() {
         <title>Create Thread</title>
       </Head>
       <PrettyForm onSubmit={createButtonHandler}>
-        <PrettyFormElement>
-          <StringInput value={threadParams.name} setValue={(value) => setThreadParams({...threadParams, name: value })} placeholder="enter thread name here" name="thread_name" validatorRegex={/^[\w\d]*$/} required />
-          </PrettyFormElement>
-          <PrettyFormElement>
-          <RoundedButton type="submit">Create</RoundedButton>
-        </PrettyFormElement>
-        <PrettyFormElement>
-          <p className="error">{errorMsg}</p>
-        </PrettyFormElement>
+        <StringInput value={threadParams.name} setValue={(value) => setThreadParams({...threadParams, name: value })} placeholder="enter thread name here" name="thread_name" validatorRegex={/^[\w\d]*$/} required />
+        <RoundedButton type="submit">Create</RoundedButton>
+        <p className="error">{errorMsg}</p>
       </PrettyForm>
       <style jsx>{`
         .createThread {

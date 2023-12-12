@@ -4,7 +4,7 @@ export function PrettyForm({ children, onSubmit }) {
   return (
     <>
       <form className={styles.PrettyForm} onSubmit={onSubmit}>
-        {children}
+        {children.map(child => <PrettyFormElement>{child}</PrettyFormElement>)}
       </form>
       <style jsx>{`
         .prettyForm {
