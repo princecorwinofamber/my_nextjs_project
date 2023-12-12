@@ -4,7 +4,8 @@ import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
 import { getSortedPostsData } from '../lib/posts';
 import Date from '../components/date';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 
 console.log("index.js run");
@@ -20,6 +21,12 @@ export async function getStaticProps() {
 
 export default function Home({ allPostsData }) {
   const [postText, setPostText] = useState('Type here!');
+
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push('/threads-overview');
+  }, []);
 
   return (
     <Layout home>
