@@ -14,6 +14,9 @@ export default function ProfilePage() {
 
   const [avatar, setAvatar] = useState(null);
   const [displayName, setDisplayName] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [newPasswordConfirm, setNewPasswordConfirm] = useState("");
 
   useEffect(() => {
     if (user?.user?.display_name) {
@@ -53,28 +56,65 @@ export default function ProfilePage() {
 
   return (
     <>
-      <div>
-        <h1>You are logged in as {user?.user ? user.user.username : "error" }</h1>
-        {console.log("user requested") == null && user?.user && true ? <Profile userId={user.user.id} /> : null}
+      <div className="profile">
+        <a onClick={() => fileInputRef.current.click()} style={{ margin: "auto" }}>{
+          avatar ? 
+          <Image
+            src={avatar}
+            alt="Profile Picture"
+            width={160}
+            height={160}
+            className={utilStyles.borderCircle}
+          /> :
+          <ProfilePicture userId={user?.user ? user.user.id : 0} size={160} />
+        }</a>
+        
+        <form method="POST" action="/api/edit-profile-avatar" style={{ display: "none" }}>
+          <input type="file" ref={fileInputRef} name="avatar" accept="image/png" onChange={onAvatarInputChange} />
+        </form>
+        <form onSubmit={(ev) => ev.preventDefault()} style={formStyle}>
+          <p style={{display: 'flex', justifyContent: 'center'}}>Displayed Name</p>
+          <div style={formElementStyle}>
+            <StringInput placeholder="Display Name" value={displayName} setValue={onDisplayNameInputChange}/>
+          </div>
+        </form>
+        <form onSubmit={(ev) => ev.preventDefault()} style={formStyle}>
+          <p style={{display: 'flex', justifyContent: 'center'}}>Change password</p>
+          <div style={formElementStyle}>
+            <StringInput placeholder="Current Password" value={currentPassword} setValue={setCurrentPassword}/>
+          </div>
+          <div style={formElementStyle}>
+            <StringInput placeholder="New Password" value={newPassword} setValue={setNewPassword}/>
+          </div>
+          <div style={formElementStyle}>
+            <StringInput placeholder="Repeat Password" value={newPasswordConfirm} setValue={setNewPasswordConfirm}/>
+          </div>
+          <div style={{display: 'flex', justifyContent: 'center', ...formElementStyle}}>
+            <button type="submit">Change Password</button>
+          </div>
+        </form>
       </div>
-      <a onClick={() => fileInputRef.current.click()}>{
-        avatar ? 
-        <Image
-          src={avatar}
-          alt="Profile Picture"
-          width={160}
-          height={160}
-          className={utilStyles.borderCircle}
-        /> :
-        <ProfilePicture userId={user?.user ? user.user.id : 0} size={160} />
-      }</a>
-      
-      <form method="POST" action="/api/edit-profile-avatar" style={{ display: "none" }}>
-        <input type="file" ref={fileInputRef} name="avatar" accept="image/png" onChange={onAvatarInputChange} />
-      </form>
-      <form method="POST" action="/api/edit-profile-displayname">
-        <StringInput placeholder="Display Name" value={displayName} setValue={onDisplayNameInputChange}/>
-      </form>
+
+      <style jsx>{`
+        .profile {
+          display: grid;
+          row-gap: 20px;
+          justify-content: center;
+          margin-top: 40px;
+          height: 100%;
+        }
+        .error {
+          color: red;
+        }
+      `}</style>
     </>
   );
+}
+
+const formStyle = {
+  "margin-top": "50px",
+}
+
+const formElementStyle = {
+  "margin-top": "10px",
 }
