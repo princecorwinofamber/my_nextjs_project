@@ -45,6 +45,7 @@ export default function Login() {
                 false,
               );
               router.push("/threads-overview");
+              router.reload();
               // router.reload();
             } catch (error) {
               console.log("eeror", error.data);

@@ -1,6 +1,6 @@
 import StringInput from "../components/StringInput";
+import RoundedButton from "../components/RoundedButton";
 import ProfilePicture from '../components/ProfilePicture';
-import { PrettyForm, PrettyFormElement } from '../components/PrettyForm';
 import { Profile } from "../components/Profile";
 import { useState, useRef, useEffect } from "react";
 import { useUserdata } from "../lib/useUserdata";
@@ -87,23 +87,32 @@ export default function ProfilePage() {
         <form method="POST" action="/api/edit-profile-avatar" style={{ display: "none" }}>
           <input type="file" ref={fileInputRef} name="avatar" accept="image/png" onChange={onAvatarInputChange} />
         </form>
-        <PrettyForm onSubmit={(ev) => ev.preventDefault()} style={formStyle}>
+        <form onSubmit={(ev) => ev.preventDefault()} style={formStyle}>
           <p style={{display: 'flex', justifyContent: 'center'}}>Displayed Name</p>
+          <div style={formElementStyle}>
             <StringInput placeholder="Display Name" value={displayName} setValue={onDisplayNameInputChange} validatorRegex={/^[\w ]*$/} />
-        </PrettyForm>
-        <PrettyForm onSubmit={(ev) => ev.preventDefault()} style={formStyle}>
+          </div>
+        </form>
+        <form onSubmit={(ev) => ev.preventDefault()} style={formStyle}>
           <p style={{display: 'flex', justifyContent: 'center'}}>Change password</p>
+          <div style={formElementStyle}>
             <StringInput placeholder="Current Password" value={currentPassword} setValue={setCurrentPassword}/>
+          </div>
+          <div style={formElementStyle}>
             <StringInput placeholder="New Password" value={newPassword} setValue={setNewPassword}/>
+          </div>
+          <div style={formElementStyle}>
             <StringInput placeholder="Repeat Password" value={newPasswordConfirm} setValue={setNewPasswordConfirm}/>
-            <button type="submit" onClick={onPasswordSubmit}>Change Password</button>
-        </PrettyForm>
+          </div>
+          <div style={{display: 'flex', justifyContent: 'center', ...formElementStyle}}>
+            <RoundedButton type="submit" onClick={onPasswordSubmit}>Change Password</RoundedButton>
+          </div>
+        </form>
       </div>
 
       <style jsx>{`
         .profile {
           display: grid;
-          row-gap: 20px;
           justify-content: center;
           margin-top: 40px;
           height: 100%;
