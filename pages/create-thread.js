@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import RoundedButton from "../components/RoundedButton";
 import StringInput from "../components/StringInput";
+import { PrettyForm, PrettyFormElement } from '../components/PrettyForm';
 import { useEffect, useState } from 'react';
 import { useRouter } from "next/router";
 
@@ -32,17 +33,17 @@ export default function CreateThread() {
       <Head>
         <title>Create Thread</title>
       </Head>
-      <form className="createThread" onSubmit={createButtonHandler}>
-        <div style={{display: 'flex', justifyContent: 'center', ...formElementStyle}}>
+      <PrettyForm onSubmit={createButtonHandler}>
+        <PrettyFormElement>
           <StringInput value={threadParams.name} setValue={(value) => setThreadParams({...threadParams, name: value })} placeholder="enter thread name here" name="thread_name" validatorRegex={/^[\w\d]*$/} required />
-        </div>
-        <div style={{display: 'flex', justifyContent: 'center', ...formElementStyle}}>
+          </PrettyFormElement>
+          <PrettyFormElement>
           <RoundedButton type="submit">Create</RoundedButton>
-        </div>
-        <div style={{display: 'flex', justifyContent: 'center', ...formElementStyle}}>
+        </PrettyFormElement>
+        <PrettyFormElement>
           <p className="error">{errorMsg}</p>
-        </div>
-      </form>
+        </PrettyFormElement>
+      </PrettyForm>
       <style jsx>{`
         .createThread {
           display: grid;
