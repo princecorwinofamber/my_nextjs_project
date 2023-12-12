@@ -70,6 +70,7 @@ export default function ProfilePage() {
   return (
     <>
       <div className="profile">
+        <p style={{display: 'flex', justifyContent: 'center'}}>Change Avatar</p>
         <a onClick={() => fileInputRef.current.click()} style={{ margin: "auto" }}>{
           avatar ? 
           <Image
@@ -125,7 +126,7 @@ export default function ProfilePage() {
 }
 
 const formStyle = {
-  "margin-top": "50px",
+  "margin-top": "32px",
 }
 
 const formElementStyle = {

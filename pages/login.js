@@ -8,13 +8,17 @@ import Link from "next/link";
 
 export default function Login() {
   // here we just check if user is already logged in and redirect to profile
-  const { mutateUser } = useUser({
-    redirectTo: "/profile-sg",
+  const { user, mutateUser } = useUser({
+    redirectTo: "/profile",
     redirectIfFound: true,
   });
 
   const [errorMsg, setErrorMsg] = useState("");
   const router = useRouter();
+
+  if (user?.user?.id) {
+    router.push("/threads-overview");
+  }
 
   return (
     <LoginLayout>
