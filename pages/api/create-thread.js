@@ -6,7 +6,7 @@ export default withIronSessionApiRoute(
     const db = getDB();
     const user_id = req?.session?.user?.id;
     if (!user_id) {
-      res.status(401).json({ message: 'Unauthorized' });
+      res.status(401).json({ success: false, reason: 'Unauthorized' });
       return;
     }
     console.log('Create Thread', req.query);
@@ -14,7 +14,7 @@ export default withIronSessionApiRoute(
       const status = await createThread(req.query.name);
       res.status(200).json(status);
     } else {
-      res.status(400);
+      res.status(400).json({ success: false, reason: 'Error' });
     }
   },
   {

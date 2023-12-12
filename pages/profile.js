@@ -126,9 +126,9 @@ export default function ProfilePage() {
 }
 
 const formStyle = {
-  "margin-top": "32px",
+  "marginTop": "32px",
 }
 
 const formElementStyle = {
-  "margin-top": "10px",
+  "marginTop": "10px",
 }

@@ -37,7 +37,7 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default function FirstPost({ initialEntryList, threadName, threadId }) {
+export default function ThreadPage({ initialEntryList, threadName, threadId }) {
   const [entryList, setEntryList] = useState(initialEntryList);
   const [postText, setPostText] = useState('Type here!');
   const user = useUserdata();
